@@ -1,15 +1,12 @@
 class Defect < ActiveRecord::Base
   belongs_to :machine
+  
   validate :defects_must_start_before_they_finish
   validate :defects_cant_overlap
 
-  def mtbf
-    mean_time_between_failures
-  end
-
-  def mean_time_between_failures
-    
-  end
+  scope :ordered, -> { order(:started_at) }
+  scope :before, ->(time) { where('started_at <= ?', time) }
+  scope :after, ->(time) { where('started_at >= ?', time) }
 
   private
 

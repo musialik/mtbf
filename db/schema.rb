@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141119113557) do
+ActiveRecord::Schema.define(version: 20141119125531) do
 
   create_table "defects", force: true do |t|
     t.integer  "machine_id"
@@ -22,5 +22,10 @@ ActiveRecord::Schema.define(version: 20141119113557) do
   end
 
   add_index "defects", ["machine_id"], name: "index_defects_on_machine_id"
+
+  create_table "machines", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
